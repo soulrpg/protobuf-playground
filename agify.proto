@@ -1,0 +1,22 @@
+syntax = "proto3";
+package playground;
+option go_package = "github.com/soulrpg/protobuf-playground/playground";
+
+message Person {
+  string name = 1;
+  string countryId = 2;
+}
+
+message Age {
+  int32 age = 1;
+}
+
+message Count {
+  int32 count = 1;
+}
+
+service Agify {
+  rpc GetEstimatedAge(Person) returns (Age);
+
+  rpc GetCount(Person) returns (Count);
+}
