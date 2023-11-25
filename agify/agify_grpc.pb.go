@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.25.1
-// source: agify.proto
+// source: agify/agify.proto
 
-package playground
+package agify
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewAgifyClient(cc grpc.ClientConnInterface) AgifyClient {
 
 func (c *agifyClient) GetEstimatedAge(ctx context.Context, in *Person, opts ...grpc.CallOption) (*Age, error) {
 	out := new(Age)
-	err := c.cc.Invoke(ctx, "/playground.Agify/GetEstimatedAge", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/agify.Agify/GetEstimatedAge", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *agifyClient) GetEstimatedAge(ctx context.Context, in *Person, opts ...g
 
 func (c *agifyClient) GetCount(ctx context.Context, in *Person, opts ...grpc.CallOption) (*Count, error) {
 	out := new(Count)
-	err := c.cc.Invoke(ctx, "/playground.Agify/GetCount", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/agify.Agify/GetCount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _Agify_GetEstimatedAge_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/playground.Agify/GetEstimatedAge",
+		FullMethod: "/agify.Agify/GetEstimatedAge",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgifyServer).GetEstimatedAge(ctx, req.(*Person))
@@ -112,7 +112,7 @@ func _Agify_GetCount_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/playground.Agify/GetCount",
+		FullMethod: "/agify.Agify/GetCount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgifyServer).GetCount(ctx, req.(*Person))
@@ -124,7 +124,7 @@ func _Agify_GetCount_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Agify_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "playground.Agify",
+	ServiceName: "agify.Agify",
 	HandlerType: (*AgifyServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -137,5 +137,5 @@ var Agify_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "agify.proto",
+	Metadata: "agify/agify.proto",
 }
